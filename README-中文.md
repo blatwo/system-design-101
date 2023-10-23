@@ -570,7 +570,7 @@ Patterns are reusable solutions to common design problems, resulting in a smooth
 
 ## 数据库
 
-### A nice cheat sheet of different databases in cloud services
+### 云服务中不同数据库的便捷速查表
 
 <p>
   <img src="images/cloud-dbs2.png" />
@@ -582,15 +582,32 @@ We hope this cheat sheet provides high-level direction to pinpoint the right ser
 
 Note: Google has limited documentation for their database use cases. Even though we did our best to look at what was available and arrived at the best option, some of the entries may need to be more accurate. 
 
-### 8 Data Structures That Power Your Databases
+### 支撑您的数据库的-8-种数据结构
 
-The answer will vary depending on your use case. Data can be indexed in memory or on disk. Similarly, data formats vary, such as numbers, strings, geographic coordinates, etc. The system might be write-heavy or read-heavy. All of these factors affect your choice of database index format. 
+答案将根据您的使用情况而异。数据可以在`内存中`或在`磁盘上`建立索引。同样，数据格式也各不相同，例如`数字`（numbers）、`字符串`（strings）、`地理坐标`（geographic coordinates）等等。系统可能是`写入密集型`（write-heavy）或`读取密集型`（read-heavy）的。所有这些因素都会影响您选择的数据库索引格式。
 
 <p>
   <img src="images/8-ds-db.jpg" />
 </p>
+以下是一些用于为数据建索引的最流行的数据结构：
 
-The following are some of the most popular data structures used for indexing data: 
+- 跳表（Skiplist）：常见的内存索引类型。在Redis中使用。
+
+- 哈希索引（Hash index）：“Map”数据结构（或“Collection”）的非常常见实现。
+
+- SSTable（Sorted String Table）：不可变的磁盘上“Map”实现。
+
+- LSM树（Log-Structured Merge Tree）：Skiplist + SSTable。具有高写入吞吐量。
+
+- B树：基于磁盘的解决方案。具有一致的读/写性能。
+
+- 倒排索引：用于文档索引。在Lucene中使用。
+
+- 后缀树（Suffix tree）：用于字符串模式搜索。
+
+- R树（R-tree）：多维搜索，例如查找最近的邻居。
+
+    
 
 - Skiplist: a common in-memory index type. Used in Redis 
 - Hash index: a very common implementation of the “Map” data structure (or “Collection”) 
@@ -610,7 +627,7 @@ The following are some of the most popular data structures used for indexing dat
 </p>
 
 
-第 1 步 - 通过==传输层协议==（例如 TCP），将 SQL 语句发送到数据库。
+第 1 步 - 通过==传输层协议==（例如 TCP），将 `SQL` 语句发送到数据库。
 
 第 2 步 - SQL 语句被发送到==命令解析器==（Command Parser），经过`语法`和`语义`分析，然后生成`查询树`（query tree）。
 
