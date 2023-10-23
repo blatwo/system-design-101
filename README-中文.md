@@ -568,7 +568,7 @@ Patterns are reusable solutions to common design problems, resulting in a smooth
 - Observer: News Broadcaster - Notifies classes about changes in other objects. 
 - Visitor: Skillful Guest - Adds new operations to a class without altering it.
 
-## Database
+## 数据库
 
 ### A nice cheat sheet of different databases in cloud services
 
@@ -601,14 +601,32 @@ The following are some of the most popular data structures used for indexing dat
 - Suffix tree: for string pattern search 
 - R-tree: multi-dimension search, such as finding the nearest neighbor 
 
-### How is an SQL statement executed in the database?
+### 数据库中如何执行-SQL-语句
 
 The diagram below shows the process. Note that the architectures for different databases are different, the diagram demonstrates some common designs.
+
+下面的示意图展示了这个过程。请注意，不同数据库的体系结构不同，该示意图图示了一些常见的设计。
 
 <p>
   <img src="images/sql execution order in db.jpeg" style="width: 580px" />
 </p>
 
+
+第 1 步 - 通过传输层协议（例如 TCP），将 SQL 语句发送到数据库。
+
+第 2 步 - SQL 语句被发送到命令解析器，经过语法和语义分析，然后生成查询树。
+
+第 3 步 - 查询树被发送到优化器。优化器创建执行计划。
+
+第 4 步 - 执行计划被发送到执行器。执行器从执行中检索数据。
+
+第 5 步 - 访问方法提供了执行所需的数据提取逻辑，从存储引擎中检索数据。
+
+第 6 步 - 访问方法决定 SQL 语句是否为只读。如果查询是只读的（SELECT 语句），它将传递给缓冲管理器进行进一步处理。缓冲管理器在缓存或数据文件中查找数据。
+
+第 7 步 - 如果语句是 UPDATE 或 INSERT，它将传递给事务管理器进行进一步处理。
+
+第 8 步 - 在事务期间，数据处于锁定模式。这由锁管理器来保证。它还确保了事务的 ACID 特性。
 
 Step 1 - A SQL statement is sent to the database via a transport layer protocol (e.g.TCP).
 
