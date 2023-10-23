@@ -603,48 +603,30 @@ The following are some of the most popular data structures used for indexing dat
 
 ### 数据库中如何执行-SQL-语句
 
-The diagram below shows the process. Note that the architectures for different databases are different, the diagram demonstrates some common designs.
-
-下面的示意图展示了这个过程。请注意，不同数据库的体系结构不同，该示意图图示了一些常见的设计。
+下面的示意图展示了这个过程。请注意，不同数据库的体系结构不同，该图展示了一些常见的设计。
 
 <p>
   <img src="images/sql execution order in db.jpeg" style="width: 580px" />
 </p>
 
 
-第 1 步 - 通过传输层协议（例如 TCP），将 SQL 语句发送到数据库。
+第 1 步 - 通过==传输层协议==（例如 TCP），将 SQL 语句发送到数据库。
 
-第 2 步 - SQL 语句被发送到命令解析器，经过语法和语义分析，然后生成查询树。
+第 2 步 - SQL 语句被发送到==命令解析器==（Command Parser），经过`语法`和`语义`分析，然后生成`查询树`（query tree）。
 
-第 3 步 - 查询树被发送到优化器。优化器创建执行计划。
+第 3 步 - 查询树被发送到==优化器==（Query Optimizer）。优化器创建`执行计划`（execution plan）。
 
-第 4 步 - 执行计划被发送到执行器。执行器从执行中检索数据。
+第 4 步 - 执行计划被发送到==执行器==（executor）。执行器从执行中检索数据。
 
-第 5 步 - 访问方法提供了执行所需的数据提取逻辑，从存储引擎中检索数据。
+第 5 步 - ==访问方法==（Access methods）提供了执行所需的数据提取逻辑，从`存储引擎`中检索数据。
 
-第 6 步 - 访问方法决定 SQL 语句是否为只读。如果查询是只读的（SELECT 语句），它将传递给缓冲管理器进行进一步处理。缓冲管理器在缓存或数据文件中查找数据。
+第 6 步 - ==访问方法==决定 SQL 语句是否为只读。如果查询是只读的（SELECT 语句），它将传递给`缓冲管理器`（The buffer manager）进行进一步处理。缓冲管理器在`缓存`或`数据文件`中查找数据。
 
-第 7 步 - 如果语句是 UPDATE 或 INSERT，它将传递给事务管理器进行进一步处理。
+第 7 步 - 如果语句是 ==UPDATE== 或 ==INSERT==，它将传递给`事务管理器`（The transaction manager）进行进一步处理。
 
-第 8 步 - 在事务期间，数据处于锁定模式。这由锁管理器来保证。它还确保了事务的 ACID 特性。
+第 8 步 - 在==事务期间==，数据处于`锁定模式`。这由`锁管理器`（The lock manager）来保证。它还确保了事务的 `ACID` 特性。
 
-Step 1 - A SQL statement is sent to the database via a transport layer protocol (e.g.TCP).
-
-Step 2 - The SQL statement is sent to the command parser, where it goes through syntactic and semantic analysis, and a query tree is generated afterward.
-
-Step 3 - The query tree is sent to the optimizer. The optimizer creates an execution plan. 
-
-Step 4 - The execution plan is sent to the executor. The executor retrieves data from the execution.
-
-Step 5 - Access methods provide the data fetching logic required for execution, retrieving data from the storage engine. 
-
-Step 6 - Access methods decide whether the SQL statement is read-only. If the query is read-only (SELECT statement), it is passed to the buffer manager for further processing. The buffer manager looks for the data in the cache or data files.
-
-Step 7 - If the statement is an UPDATE or INSERT, it is passed to the transaction manager for further processing.
-
-Step 8 - During a transaction, the data is in lock mode. This is guaranteed by the lock manager. It also ensures the transaction’s ACID properties. 
-
-###  CAP theorem
+###  CAP-定理
 
 The CAP theorem is one of the most famous terms in computer science, but I bet different developers have different understandings. Let’s examine what it is and why it can be confusing. 
 
