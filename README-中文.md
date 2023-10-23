@@ -13,96 +13,97 @@
 </p>
 
 
-# System Design 101
+# 系统设计 101
 
-Explain complex systems using visuals and simple terms. 
+用图示和简单术语解释复杂系统。
 
-Whether you're preparing for a System Design Interview or you simply want to understand how systems work beneath the surface, we hope this repository will help you achieve that.
+无论您是为系统设计面试做准备，还是只是想了解系统在表面下的工作方式，我们希望这个存储库能帮助您实现这一目标。
 
-# Table of Contents
+# 目录
 
 <!-- TOC toc.levels=2 -->
 
-- [Communication protocols](#communication-protocols)
-  - [REST API vs. GraphQL](#rest-api-vs-graphql)
-  - [How does gRPC work?](#how-does-grpc-work)
-  - [What is a webhook?](#what-is-a-webhook)
-  - [How to improve API performance?](#how-to-improve-api-performance)
-  - [HTTP 1.0 -\> HTTP 1.1 -\> HTTP 2.0 -\> HTTP 3.0 (QUIC)](#http-10---http-11---http-20---http-30-quic)
-  - [SOAP vs REST vs GraphQL vs RPC](#soap-vs-rest-vs-graphql-vs-rpc)
-  - [Code First vs. API First](#code-first-vs-api-first)
-  - [HTTP status codes](#http-status-codes)
-  - [What does API gateway do?](#what-does-api-gateway-do)
-  - [How do we design effective and safe APIs?](#how-do-we-design-effective-and-safe-apis)
-  - [TCP/IP encapsulation](#tcpip-encapsulation)
-  - [Why is Nginx called a “reverse” proxy?](#why-is-nginx-called-a-reverse-proxy)
-  - [What are the common load-balancing algorithms?](#what-are-the-common-load-balancing-algorithms)
-  - [URL, URI, URN - Do you know the differences?](#url-uri-urn---do-you-know-the-differences)
-- [CI/CD](#cicd)
-  - [CI/CD Pipeline Explained in Simple Terms](#cicd-pipeline-explained-in-simple-terms)
-  - [Netflix Tech Stack (CI/CD Pipeline)](#netflix-tech-stack-cicd-pipeline)
-- [Architecture patterns](#architecture-patterns)
-  - [MVC, MVP, MVVM, MVVM-C, and VIPER](#mvc-mvp-mvvm-mvvm-c-and-viper)
-  - [18 Key Design Patterns Every Developer Should Know](#18-key-design-patterns-every-developer-should-know)
-- [Database](#database)
-  - [A nice cheat sheet of different databases in cloud services](#a-nice-cheat-sheet-of-different-databases-in-cloud-services)
-  - [8 Data Structures That Power Your Databases](#8-data-structures-that-power-your-databases)
-  - [How is an SQL statement executed in the database?](#how-is-an-sql-statement-executed-in-the-database)
-  - [CAP theorem](#cap-theorem)
-  - [Types of Memory and Storage](#types-of-memory-and-storage)
-  - [Visualizing a SQL query](#visualizing-a-sql-query)
-  - [SQL language](#sql-language)
-- [Cache](#cache)
-  - [Data is cached everywhere](#data-is-cached-everywhere)
-  - [Why is Redis so fast?](#why-is-redis-so-fast)
-  - [How can Redis be used?](#how-can-redis-be-used)
-  - [Top caching strategies](#top-caching-strategies)
-- [Microservice architecture](#microservice-architecture)
-  - [What does a typical microservice architecture look like?](#what-does-a-typical-microservice-architecture-look-like)
-  - [Microservice Best Practices](#microservice-best-practices)
-  - [What tech stack is commonly used for microservices?](#what-tech-stack-is-commonly-used-for-microservices)
-  - [Why is Kafka fast](#why-is-kafka-fast)
-- [Payment systems](#payment-systems)
-  - [How to learn payment systems?](#how-to-learn-payment-systems)
-  - [Why is the credit card called “the most profitable product in banks”? How does VISA/Mastercard make money?](#why-is-the-credit-card-called-the-most-profitable-product-in-banks-how-does-visamastercard-make-money)
-  - [How does VISA work when we swipe a credit card at a merchant’s shop?](#how-does-visa-work-when-we-swipe-a-credit-card-at-a-merchants-shop)
-  - [Payment Systems Around The World Series (Part 1): Unified Payments Interface (UPI) in India](#payment-systems-around-the-world-series-part-1-unified-payments-interface-upi-in-india)
-- [DevOps](#devops)
-  - [DevOps vs. SRE vs. Platform Engineering. What is the difference?](#devops-vs-sre-vs-platform-engineering-what-is-the-difference)
-  - [What is k8s (Kubernetes)?](#what-is-k8s-kubernetes)
-  - [Docker vs. Kubernetes. Which one should we use?](#docker-vs-kubernetes-which-one-should-we-use)
-  - [How does Docker work?](#how-does-docker-work)
-- [GIT](#git)
-  - [How Git Commands work](#how-git-commands-work)
-  - [How does Git Work?](#how-does-git-work)
-  - [Git merge vs. Git rebase](#git-merge-vs-git-rebase)
-- [Cloud Services](#cloud-services)
-  - [A nice cheat sheet of different cloud services (2023 edition)](#a-nice-cheat-sheet-of-different-cloud-services-2023-edition)
-  - [What is cloud native?](#what-is-cloud-native)
-- [Developer productivity tools](#developer-productivity-tools)
-  - [Visualize JSON files](#visualize-json-files)
-  - [Automatically turn code into architecture diagrams](#automatically-turn-code-into-architecture-diagrams)
-- [Linux](#linux)
-  - [Linux file system explained](#linux-file-system-explained)
-  - [18 Most-used Linux Commands You Should Know](#18-most-used-linux-commands-you-should-know)
-- [Security](#security)
-  - [How does HTTPS work?](#how-does-https-work)
-  - [Oauth 2.0 Explained With Simple Terms.](#oauth-20-explained-with-simple-terms)
-  - [Top 4 Forms of Authentication Mechanisms](#top-4-forms-of-authentication-mechanisms)
-  - [Session, cookie, JWT, token, SSO, and OAuth 2.0 - what are they?](#session-cookie-jwt-token-sso-and-oauth-20---what-are-they)
-  - [How to store passwords safely in the database and how to validate a password?](#how-to-store-passwords-safely-in-the-database-and-how-to-validate-a-password)
-  - [Explaining JSON Web Token (JWT) to a 10 year old Kid](#explaining-json-web-token-jwt-to-a-10-year-old-kid)
-  - [How does Google Authenticator (or other types of 2-factor authenticators) work?](#how-does-google-authenticator-or-other-types-of-2-factor-authenticators-work)
-- [Real World Case Studies](#real-world-case-studies)
-  - [Netflix's Tech Stack](#netflixs-tech-stack)
-  - [Twitter Architecture 2022](#twitter-architecture-2022)
-  - [Evolution of Airbnb’s microservice architecture over the past 15 years](#evolution-of-airbnbs-microservice-architecture-over-the-past-15-years)
-  - [Monorepo vs. Microrepo.](#monorepo-vs-microrepo)
-  - [How will you design the Stack Overflow website?](#how-will-you-design-the-stack-overflow-website)
-  - [Why did Amazon Prime Video monitoring move from serverless to monolithic? How can it save 90% cost?](#why-did-amazon-prime-video-monitoring-move-from-serverless-to-monolithic-how-can-it-save-90-cost)
-  - [How does Disney Hotstar capture 5 Billion Emojis during a tournament?](#how-does-disney-hotstar-capture-5-billion-emojis-during-a-tournament)
-  - [How Discord Stores Trillions Of Messages](#how-discord-stores-trillions-of-messages)
-  - [How do video live streamings work on YouTube, TikTok live, or Twitch?](#how-do-video-live-streamings-work-on-youtube-tiktok-live-or-twitch)
+- [通信协议](#通信协议)
+    - [REST API vs. GraphQL](#rest-api-vs-graphql)
+    - [gRPC 是如何工作的？](#gRPC-是如何工作的)
+    - [什么是 Webhook？](#什么是-webhook)
+    - [如何提高 API 性能？](#如何提高-api-性能)
+    - [HTTP 1.0 -> HTTP 1.1 -> HTTP 2.0 -> HTTP 3.0 (QUIC)](#http-10--http-11--http-20--http-30-quic)
+    - [SOAP vs REST vs GraphQL vs RPC](#soap-vs-rest-vs-graphql-vs-rpc)
+    - [Code First vs. API First](#code-first-vs-api-first)
+    - [HTTP 状态码](#http-状态码)
+    - [API 网关的作用是什么？](#API-网关的作用是什么)
+    - [如何设计高效且安全的 API？](#如何设计高效且安全的-API)
+    - [TCP/IP 封装](#TCP/IP-封装)
+    - [为什么 Nginx 被称为“反向”代理？](#为什么-Nginx-被称为“反向”代理)
+    - [常见的负载均衡算法有哪些？](#常见的负载均衡算法有哪些)
+    - [URL、URI、URN - 你知道它们的区别吗？](#URL-URI-URN---你知道它们的区别吗)
+- [持续集成/持续交付 (CI/CD)](#持续集成持续交付-cicd)
+    - [以简单术语解释 CI/CD 流程](#以简单术语解释-CI/CD-流程)
+    - [Netflix 技术栈 (CI/CD 流程)](#Netflix-技术栈-CI/CD-流程)
+- [架构模式](#架构模式)
+    - [MVC、MVP、MVVM、MVVM-C 和 VIPER](#MVC-MVP-MVVM-MVVM-C-和-VIPER)
+    - [每个开发人员都应了解的 18 种关键设计模式](#每个开发人员都应了解的-18-种关键设计模式)
+- [数据库](#数据库)
+    - [云服务中不同数据库的便捷速查表](#云服务中不同数据库的便捷速查表)
+    - [支撑您的数据库的 8 种数据结构](#支撑您的数据库的-8-种数据结构)
+    - [数据库中如何执行 SQL 语句？](#数据库中如何执行-SQL-语句)
+    - [CAP 定理](#CAP-定理)
+    - [内存和存储类型](#内存和存储类型)
+    - [可视化 SQL 查询](#可视化-SQL-查询)
+    - [SQL 语言](#SQL-语言)
+- [缓存](#缓存)
+    - [数据到处都有缓存](#数据到处都有缓存)
+    - [为什么 Redis 如此快速？](#为什么-Redis-如此快速)
+    - [Redis 可以如何使用？](#Redis-可以如何使用)
+    - [顶级缓存策略](#顶级缓存策略)
+- [微服务架构](#微服务架构)
+    - [典型微服务架构是什么样的？](#典型微服务架构是什么样的)
+    - [微服务最佳实践](#微服务最佳实践)
+    - [微服务常用的技术栈是什么？](#微服务常用的技术栈是什么？)
+    - [为什么 Kafka 如此快速](#为什么-Kafka-如此快速)
+- [支付系统](#支付系统)
+    - [如何学习支付系统？](#如何学习支付系统)
+    - [为什么信用卡被称为“银行最有利可图的产品”？VISA/Mastercard 如何盈利？](#为什么信用卡被称为“银行最有利可图的产品”？VISA/Mastercard-如何盈利？)
+    - [当我们在商店刷信用卡时，VISA 是如何工作的？](#当我们在商店刷信用卡时，VISA-是如何工作的？)
+    - [全球各地的支付系统系列（第一部分）：印度的统一支付接口 (UPI)](#全球各地的支付系统系列（第一部分）：印度的统一支付接口-UPI)
+- [DevOps](#DevOps)
+    - [DevOps vs. SRE vs. 平台工程。它们有什么不同？](#DevOps-vs.-SRE-vs.-平台工程。它们有什么不同？)
+    - [什么是 k8s (Kubernetes)？](#什么是-k8s-Kubernetes)
+    - [Docker vs. Kubernetes。我们应该使用哪一个？](#Docker-vs.-Kubernetes。我们应该使用哪一个？)
+    - [Docker 如何工作？](#Docker-如何工作？)
+- [GIT](#GIT)
+    - [Git 命令是如何工作的](#Git-命令是如何工作的)
+    - [Git 是如何工作的？](#Git-是如何工作的)
+    - [Git 合并 vs. Git 变基](#Git-合并-vs.-Git-变基)
+
+- [云服务](#云服务)
+    - [不同云服务的便捷速查表 (2023 版)](#不同云服务的便捷速查表-2023-版)
+    - [什么是云原生？](#什么是云原生？)
+- [开发人员生产力工具](#开发人员生产力工具)
+    - [可视化 JSON 文件](#可视化-JSON-文件)
+    - [自动将代码转换为架构图](#自动将代码转换为架构图)
+- [Linux](#Linux)
+    - [Linux 文件系统解释](#Linux-文件系统解释)
+    - [18 个最常用的 Linux 命令，您应该知道](#18-个最常用的-Linux-命令，您应该知道)
+- [安全性](#安全性)
+    - [HTTPS 是如何工作的？](#HTTPS-是如何工作的？)
+    - [简单术语解释 Oauth 2.0](#简单术语解释-Oauth-2.0)
+    - [顶级的 4 种身份验证机制](#顶级的-4-种身份验证机制)
+    - [会话、Cookie、JWT、令牌、SSO 和 OAuth 2.0 - 它们是什么？](#会话CookieJWT令牌SSO和OAuth-2.0---它们是什么？)
+    - [如何安全存储数据库中的密码以及如何验证密码？](#如何安全存储数据库中的密码以及如何验证密码？)
+    - [向 10 岁孩子解释 JSON Web Token (JWT)](#向-10-岁孩子解释-JSON-Web-Token-JWT)
+    - [Google Authenticator（或其他类型的双因素认证器）是如何工作的？](#Google-Authenticator或其他类型的双因素认证器是如何工作的？)
+- [实际案例研究](#实际案例研究)
+    - [Netflix 的技术栈](#Netflix的技术栈)
+    - [Twitter 2022 年的架构](#Twitter-2022-年的架构)
+    - [Airbnb 过去 15 年的微服务架构演进](#Airbnb-过去-15-年的微服务架构演进)
+    - [单体仓库 vs. 微仓库](#单体仓库-vs.-微仓库)
+    - [如何设计 Stack Overflow 网站？](#如何设计-Stack-Overflow-网站)
+    - [为什么 Amazon Prime Video 的监控从无服务器转向单片化？如何节省 90% 的成本？](#为什么-Amazon-Prime-Video-的监控从无服务器转向单片化？如何节省-90-的成本？)
+    - [Disney Hotstar 如何在锦标赛期间捕获 50 亿个表情符号？](#Disney-Hotstar-如何在锦标赛期间捕获-50-亿个表情符号？)
+    - [Discord 如何存储数万亿条消息](#Discord-如何存储数万亿条消息)
+    - [YouTube、TikTok 和 Twitch 上的视频直播是如何工作的？](#YouTubeTikTok-和-Twitch-上的视频直播是如何工作的？)
 
 <!-- /TOC -->
 
@@ -837,7 +838,7 @@ A picture is worth a thousand words: 9 best practices for developing microservic
   <img src="images/microservice-best-practices.jpeg" />
 </p>
 
- 
+
 When we develop microservices, we need to follow the following best practices: 
 
 1. Use separate data storage for each microservice 
@@ -885,9 +886,9 @@ There are many design decisions that contributed to Kafka’s performance. In th
 
 1. The first one is Kafka’s reliance on Sequential I/O.
 2. The second design choice that gives Kafka its performance advantage is its focus on efficiency: zero copy principle.
- 
+
 The diagram illustrates how the data is transmitted between producer and consumer, and what zero-copy means.
- 
+
 - Step 1.1 - 1.3: Producer writes data to the disk 
 - Step 2: Consumer reads data without zero-copy
 
@@ -901,13 +902,13 @@ The diagram illustrates how the data is transmitted between producer and consume
 
 2.5 The network card sends data out to the consumer
 
- 
+
 - Step 3: Consumer reads data with zero-copy
 
 3.1: The data is loaded from disk to OS cache
 3.2 OS cache directly copies the data to the network card via sendfile() command
 3.3 The network card sends data out to the consumer
- 
+
 Zero copy is a shortcut to save the multiple data copies between application context and kernel context.
 
 ## Payment systems
@@ -952,33 +953,33 @@ Why should the issuing bank be compensated?
 
 
 VISA, Mastercard, and American Express act as card networks for the clearing and settling of funds. The card acquiring bank and the card issuing bank can be – and often are – different. If banks were to settle transactions one by one without an intermediary, each bank would have to settle the transactions with all the other banks. This is quite inefficient.   
- 
+
 The diagram below shows VISA’s role in the credit card payment process. There are two flows involved. Authorization flow happens when the customer swipes the credit card. Capture and settlement flow happens when the merchant wants to get the money at the end of the day.
- 
+
 - Authorization Flow
 
 Step 0: The card issuing bank issues credit cards to its customers. 
- 
+
 Step 1: The cardholder wants to buy a product and swipes the credit card at the Point of Sale (POS) terminal in the merchant’s shop.
- 
+
 Step 2: The POS terminal sends the transaction to the acquiring bank, which has provided the POS terminal.
- 
+
 Steps 3 and 4: The acquiring bank sends the transaction to the card network, also called the card scheme. The card network sends the transaction to the issuing bank for approval.
- 
+
 Steps 4.1, 4.2 and 4.3: The issuing bank freezes the money if the transaction is approved. The approval or rejection is sent back to the acquirer, as well as the POS terminal. 
- 
+
 - Capture and Settlement Flow
 
 Steps 1 and 2: The merchant wants to collect the money at the end of the day, so they hit ”capture” on the POS terminal. The transactions are sent to the acquirer in batch. The acquirer sends the batch file with transactions to the card network.
- 
+
 Step 3: The card network performs clearing for the transactions collected from different acquirers, and sends the clearing files to different issuing banks.
- 
+
 Step 4: The issuing banks confirm the correctness of the clearing files, and transfer money to the relevant acquiring banks.
- 
+
 Step 5: The acquiring bank then transfers money to the merchant’s bank. 
- 
+
 Step 4: The card network clears the transactions from different acquiring banks. Clearing is a process in which mutual offset transactions are netted, so the number of total transactions is reduced.
- 
+
 In the process, the card network takes on the burden of talking to each bank and receives service fees in return.
 
 ### Payment Systems Around The World Series (Part 1): Unified Payments Interface (UPI) in India
@@ -1041,7 +1042,7 @@ The worker node(s) host the Pods that are the components of the application work
     The controller manager runs the controllers, including Node Controller, Job Controller, EndpointSlice Controller, and ServiceAccount Controller.
 
 4. Etcd
-    
+   
     etcd is a key-value store used as Kubernetes' backing store for all cluster data.
 
 - Nodes
@@ -1095,7 +1096,7 @@ and “docker run”.
 There are 3 components in Docker architecture: 
 
 - Docker client 
-    
+  
     The docker client talks to the Docker daemon. 
 
 - Docker host 
@@ -1245,7 +1246,7 @@ What does it do?
 - Diagrams can also be rendered directly inside the Jupyter Notebooks.
 - No design tools are needed. 
 - Supports the following providers: AWS, Azure, GCP, Kubernetes, Alibaba Cloud, Oracle Cloud, etc. 
- 
+
 [Github repo](https://github.com/mingrammer/diagrams)
 
 ## Linux
@@ -1392,7 +1393,7 @@ From simple to complex, here is my understanding of user identity management:
   <img src="images/salt.jpg" style="width: 720px" />
 </p>
 
- 
+
 **Things NOT to do**
 
 - Storing passwords in plain text is not a good idea because anyone with internal access can see them.
@@ -1404,7 +1405,7 @@ From simple to complex, here is my understanding of user identity management:
 **What is salt?**
 
 According to OWASP guidelines, “a salt is a unique, randomly generated string that is added to each password as part of the hashing process”.
- 
+
 **How to store a password and salt?**
 
 1. the hash result is unique to each password.
@@ -1437,7 +1438,7 @@ When you want to send the JWT to a server, you put the header, payload, and sign
 ### How does Google Authenticator (or other types of 2-factor authenticators) work?
 
 Google Authenticator is commonly used for logging into our accounts when 2-factor authentication is enabled. How does it guarantee security?
- 
+
 Google Authenticator is a software-based authenticator that implements a two-step verification service. The diagram below provides detail. 
 
 <p>
@@ -1451,22 +1452,22 @@ There are two stages involved:
 - Stage 2 - The user uses the authenticator for logging in, etc.
 
 Let’s look at these stages.
- 
+
 **Stage 1**
 
 Steps 1 and 2: Bob opens the web page to enable two-step verification. The front end requests a secret key. The authentication service generates the secret key for Bob and stores it in the database.
- 
+
 Step 3: The authentication service returns a URI to the front end. The URI is composed of a key issuer, username, and secret key. The URI is displayed in the form of a QR code on the web page.
- 
+
 Step 4: Bob then uses Google Authenticator to scan the generated QR code. The secret key is stored in the authenticator.
 
 **Stage 2**
 Steps 1 and 2: Bob wants to log into a website with Google two-step verification. For this, he needs the password. Every 30 seconds, Google Authenticator generates a 6-digit password using TOTP (Time-based One Time Password) algorithm. Bob uses the password to enter the website.
- 
+
 Steps 3 and 4: The frontend sends the password Bob enters to the backend for authentication. The authentication service reads the secret key from the database and generates a 6-digit password using the same TOTP algorithm as the client.
- 
+
 Step 5: The authentication service compares the two passwords generated by the client and the server, and returns the comparison result to the frontend. Bob can proceed with the login process only if the two passwords match.
- 
+
 Is this authentication mechanism safe? 
 
 - Can the secret key be obtained by others? 
@@ -1474,7 +1475,7 @@ Is this authentication mechanism safe?
     We need to make sure the secret key is transmitted using HTTPS. The authenticator client and the database store the secret key, and we need to make sure the secret keys are encrypted.
 
 - Can the 6-digit password be guessed by hackers?
-    
+  
     No. The password has 6 digits, so the generated password has 1 million potential combinations. Plus, the password changes every 30 seconds. If hackers want to guess the password in 30 seconds, they need to enter 30,000 combinations per second.
 
 
@@ -1656,7 +1657,7 @@ Ex Amazon VP Sustainability Adrian Cockcroft: “The Prime Video team had follow
 5. The PubSub consumers pull aggregated emoji data from Kafka. 
 
 6. Emojis are delivered to other clients in real-time through the PubSub infrastructure. The PubSub infrastructure is interesting. Hotstar considered the following protocols: Socketio, NATS, MQTT, and gRPC, and settled with MQTT.
- 
+
 A similar design is adopted by LinkedIn which streams a million likes/sec.
 
 ### How Discord Stores Trillions Of Messages 
@@ -1687,30 +1688,30 @@ ScyllaDB is Cassandra compatible database written in C++. Discord redesigned its
 The p99 read latency in ScyllaDB is 15ms compared to 40-125ms in Cassandra. The p99 write latency is 5ms compared to 5-70ms in Cassandra. 
 
 ### How do video live streamings work on YouTube, TikTok live, or Twitch?
- 
+
 Live streaming differs from regular streaming because the video content is sent via the internet in real-time, usually with a latency of just a few seconds.
- 
+
 The diagram below explains what happens behind the scenes to make this possible.
 
 <p>
   <img src="images/live_streaming_updated.jpg" style="width: 640px" />
 </p>
 
- 
+
 Step 1: The raw video data is captured by a microphone and camera. The data is sent to the server side.
- 
+
 Step 2: The video data is compressed and encoded. For example, the compressing algorithm separates the background and other video elements. After compression, the video is encoded to standards such as H.264. The size of the video data is much smaller after this step.
- 
+
 Step 3: The encoded data is divided into smaller segments, usually seconds in length, so it takes much less time to download or stream.
- 
+
 Step 4: The segmented data is sent to the streaming server. The streaming server needs to support different devices and network conditions. This is called ‘Adaptive Bitrate Streaming.’ This means we need to produce multiple files at different bitrates in steps 2 and 3.
- 
+
 Step 5: The live streaming data is pushed to edge servers supported by CDN (Content Delivery Network.) Millions of viewers can watch the video from an edge server nearby. CDN significantly lowers data transmission latency. 
- 
+
 Step 6: The viewers’ devices decode and decompress the video data and play the video in a video player.
- 
+
 Steps 7 and 8: If the video needs to be stored for replay, the encoded data is sent to a storage server, and viewers can request a replay from it later.
- 
+
 Standard protocols for live streaming include:
 
 - RTMP (Real-Time Messaging Protocol): This was originally developed by Macromedia to transmit data between a Flash player and a server. Now it is used for streaming video data over the internet. Note that video conferencing applications like Skype use RTC (Real-Time Communication) protocol for lower latency.
